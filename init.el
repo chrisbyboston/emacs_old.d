@@ -14,3 +14,11 @@
 ;; Globally add line numbers and create a margin
 (global-linum-mode 1)
 (setq linum-format "%d ")
+
+;; Create a key-binding for pudb
+(global-set-key (kbd "C-c p") 'pudb)
+
+(defun pudb ()
+  "Insert pudb debugger line at the cursor"
+  (interactive)
+  (insert "import pudb; pudb.set_trace()  # XXX BREAKPOINT"))
