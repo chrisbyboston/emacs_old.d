@@ -22,3 +22,6 @@
   "Insert pudb debugger line at the cursor"
   (interactive)
   (insert "import pudb; pudb.set_trace()  # XXX BREAKPOINT"))
+
+;; Truncate lines when in python-mode
+(add-hook 'python-mode-hook (lambda () (setq truncate-lines t)))
