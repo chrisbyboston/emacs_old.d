@@ -25,3 +25,8 @@
 
 ;; Truncate lines when in python-mode
 (add-hook 'python-mode-hook (lambda () (setq truncate-lines t)))
+
+;; Save my place yo!
+(setq save-place-file "~/.emacs.d/saveplace")
+(setq-default save-place t)
+(require 'saveplace)
