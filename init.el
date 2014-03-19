@@ -11,5 +11,6 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 
-;; Globally add line numbers
+;; Globally add line numbers and create a margin
 (global-linum-mode 1)
+(setq linum-format "%d ")
