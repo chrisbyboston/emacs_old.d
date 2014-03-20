@@ -1,3 +1,9 @@
+;; Functions (load all files in defuns-dir)
+(setq defuns-dir (expand-file-name "defuns" user-emacs-directory))
+(dolist (file (directory-files defuns-dir t "\\w+"))
+  (when (file-regular-p file)
+    (load file)))
+
 ;; Add the package manager
 (when (>= emacs-major-version 24)
   (require 'package)
@@ -18,15 +24,20 @@
 ;; Create a key-binding for pudb
 (global-set-key (kbd "C-c p") 'pudb)
 
-(defun pudb ()
-  "Insert pudb debugger line at the cursor"
-  (interactive)
-  (insert "import pudb; pudb.set_trace()  # XXX BREAKPOINT"))
-
-;; Truncate lines when in python-mode
+;; python-mode hooks
 (add-hook 'python-mode-hook (lambda () (setq truncate-lines t)))
+(add-hook 'python-mode-hook '(lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
 
 ;; Save my place yo!
 (setq save-place-file "~/.emacs.d/saveplace")
 (setq-default save-place t)
 (require 'saveplace)
+
+;; Implement vi-style o
+(global-set-key (kbd "C-c o") 'vi-open-line-below)
+
+;; Implemet vi-style O
+(global-set-key (kbd "C-c O") 'vi-open-line-above)
+
+;; Implement vi-style dd
+(global-set-key (kbd "C-c d") 'kill-current-line)
