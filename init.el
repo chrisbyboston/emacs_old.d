@@ -42,9 +42,11 @@
 ;; Implement vi-style dd
 (global-set-key (kbd "C-c d") 'kill-current-line)
 
-;; Set theme
-(custom-set-variables '(custom-enabled-themes (quote (tango-dark))))
-(custom-set-faces)
+;; Set appearance
+(load-theme 'tango-dark)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
 
 ;; Add two-finger scrolling
 (unless window-system
