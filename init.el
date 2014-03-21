@@ -59,3 +59,6 @@
   (defun track-mouse (e))
   (setq mouse-sel-mode t)
 )
+
+;; Stop the bell
+(setq ring-bell-function 'ignore)
