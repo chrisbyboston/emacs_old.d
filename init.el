@@ -11,6 +11,10 @@
 (require 'setup-package)
 (require 'packages)
 
+;; TRAMP
+(require 'tramp)
+    (setq tramp-default-method "ssh")
+
 ;; Org-Mode stuff from http://orgmode.org/worg/org-tutorials/orgtutorial_dto.html
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
