@@ -4,12 +4,12 @@
   (when (file-regular-p file)
     (load file)))
 
-;; Add the package manager
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (package-initialize)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-  )
+;; Set up load path
+(add-to-list 'load-path user-emacs-directory)
+
+;; Setup Package commands
+(require 'setup-package)
+(require 'packages)
 
 ;; Org-Mode stuff from http://orgmode.org/worg/org-tutorials/orgtutorial_dto.html
 (require 'org)
@@ -25,8 +25,16 @@
 (global-set-key (kbd "C-c p") 'pudb)
 
 ;; python-mode hooks
-(add-hook 'python-mode-hook (lambda () (setq truncate-lines t)))
 (add-hook 'python-mode-hook '(lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
+
+;; Turn on electric-pair-mode
+(electric-pair-mode 1)
+
+;; Show trailing whitespace 
+(setq show-trailing-whitespace t)
+
+;; Always truncate lines
+(setq default-truncate-lines t)
 
 ;; Save my place yo!
 (setq save-place-file "~/.emacs.d/saveplace")
@@ -64,3 +72,16 @@
 
 ;; Stop the bell
 (setq ring-bell-function 'ignore)
+
+;; Setup extensions
+(eval-after-load 'erc '(require 'setup-erc))
+
+;; Save minibuffer history
+(savehist-mode 1)
+(setq history-length 1000)
+
+;; Never insert tabs
+(set-default 'indent-tabs-mode nil)
+
+;; Sentences do not need double spaces to end. Period.
+(set-default 'sentence-end-double-space nil)
